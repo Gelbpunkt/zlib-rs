@@ -25,6 +25,9 @@ jobs:
       RUST_BACKTRACE: 1
       # i686-unknown-linux-gnu
       CARGO_TARGET_I686_UNKNOWN_LINUX_GNU_LINKER: i686-linux-gnu-gcc
+      # loongarch64-unknown-linux-gnu
+      CARGO_TARGET_LOONGARCH64_UNKNOWN_LINUX_GNU_LINKER: loongarch64-linux-gnu-gcc
+      CARGO_TARGET_LOONGARCH64_UNKNOWN_LINUX_GNU_RUNNER: qemu-loongarch64 -L /usr/loongarch64-linux-gnu
       # s390x-unknown-linux-gnu
       CARGO_TARGET_S390X_UNKNOWN_LINUX_GNU_LINKER: s390x-linux-gnu-gcc
       CARGO_TARGET_S390X_UNKNOWN_LINUX_GNU_RUNNER: qemu-s390x -L /usr/s390x-linux-gnu
@@ -71,6 +74,11 @@ jobs:
             os: ubuntu-latest
             codecov: true
             packages: gcc-i686-linux-gnu g++-i686-linux-gnu
+
+          - target: "loongarch64-unknown-linux-gnu"
+            os: ubuntu-latest
+            codecov: false
+            packages: gcc-loongarch64-linux-gnu g++-loongarch64-linux-gnu qemu-user qemu-user-static
 
           - target: "s390x-unknown-linux-gnu"
             os: ubuntu-latest
