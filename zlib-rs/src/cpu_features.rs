@@ -108,3 +108,12 @@ pub fn is_enabled_simd128() -> bool {
 
     false
 }
+
+#[inline(always)]
+pub fn is_enabled_lsx() -> bool {
+    #[cfg(target_arch = "loongarch64")]
+    #[cfg(feature = "std")]
+    return std::arch::is_loongarch_feature_detected!("lsx");
+
+    false
+}
